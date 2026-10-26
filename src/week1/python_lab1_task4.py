@@ -58,24 +58,53 @@ Examples (these are also used to check your work):
 def count_characters(text: str) -> int:
     """Count characters that are not whitespace."""
     # TODO: implement
+    return sum(1 for char in text if not char.isspace())
+
+
     raise NotImplementedError("count_characters() is not implemented yet")
 
 
 def count_words(text: str) -> int:
     """Count number of whitespace-separated words."""
     # TODO: implement
+    return len(text.split())
     raise NotImplementedError("count_words() is not implemented yet")
 
 
 def extract_numbers(text: str) -> list[int]:
     """Return a list of the integers found in text, in order."""
     # TODO: implement
+    numbers = []
+    for word in text.split():
+        clean_word = word.rstrip(".,!?;:")
+
+        if clean_word.startswith("-") and clean_word[1:].isdigit():
+            numbers.append(int(clean_word))
+        elif clean_word.isdigit():
+            numbers.append(int(clean_word))
+
+    return numbers
     raise NotImplementedError("extract_numbers() is not implemented yet")
 
 
 def analyze_text(text: str) -> dict:
     """Return a dict with characters, words, numbers, sum and average."""
     # TODO: call the helper functions and compute sum and average
+    chars = count_characters(text)
+    words = count_words(text)
+    nums = extract_numbers(text)
+
+    # Считаем сумму и среднее значение
+    total_sum = sum(nums) if nums else 0
+    average = total_sum / len(nums) if nums else 0.0
+
+    return {
+        "characters": chars,
+        "words": words,
+        "numbers": nums,
+        "sum": total_sum,
+        "average": average
+    }
     raise NotImplementedError("analyze_text() is not implemented yet")
 
 
@@ -83,4 +112,12 @@ if __name__ == "__main__":
     # Keep all input() calls inside this block, otherwise the autograder
     # cannot import your file.
     # TODO: read input, call analyze_text(), and print results
-    pass
+    user_text = input("Enter text: ")
+    result = analyze_text(user_text)
+
+    # Вывод результатов с форматированием среднего значения до 2 знаков
+    print(f"Characters (no spaces): {result['characters']}")
+    print(f"Words: {result['words']}")
+    print(f"Numbers: {result['numbers']}")
+    print(f"Sum: {result['sum']}")
+    print(f"Average: {result['average']:.2f}")
