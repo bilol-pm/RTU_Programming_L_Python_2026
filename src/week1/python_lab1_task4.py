@@ -94,7 +94,7 @@ def analyze_text(text: str) -> dict:
     words = count_words(text)
     nums = extract_numbers(text)
 
-    # Считаем сумму и среднее значение
+    # Calculate the sum and the average value
     total_sum = sum(nums) if nums else 0
     average = total_sum / len(nums) if nums else 0.0
 
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     user_text = input("Enter text: ")
     result = analyze_text(user_text)
 
-    # Вывод результатов с форматированием среднего значения до 2 знаков
+    # Displaying results with the mean value formatted to 2 decimal places
     print(f"Characters (no spaces): {result['characters']}")
     print(f"Words: {result['words']}")
     print(f"Numbers: {result['numbers']}")
