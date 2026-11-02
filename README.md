@@ -11,7 +11,7 @@ Each week includes one **lecture (2×45 min)** and one **lab (2×45 min)**.
 
 1. **Fork** this repository to your own GitHub account.  
 2. **Open in GitHub Codespaces** (use “Code → Open with Codespaces”) on **your fork**.  
-3. Check your setup by running `python hello.py` in the terminal.  
+3. Check your setup by running `python src/week1/hello.py` in the terminal.  
 4. Navigate to `src/week1/` (and other weeks later on).  
 5. Complete each task file (`python_lab1_task1.py` … `python_lab1_task4.py`) by replacing the TODOs and the `raise NotImplementedError(...)` lines.  
    - Read the docstring at the top of each file carefully: it states exactly what each function must **return**, with examples.  
