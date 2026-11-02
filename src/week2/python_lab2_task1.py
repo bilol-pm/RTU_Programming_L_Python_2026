@@ -54,34 +54,83 @@ Examples (these are also used to check your work):
 def average(values: list[float]) -> float:
     """Return the average of values, or 0.0 for an empty list."""
     # TODO: implement
-    raise NotImplementedError("average() is not implemented yet")
+    if not values:
+        return 0.0
+    sum_of_numbers = 0
+    for value in values:
+        sum_of_numbers += value
+    return sum_of_numbers / len(values)
+
 
 
 def largest_city(populations: dict[str, int]) -> tuple[str, int]:
     """Return (city, population) for the city with the largest population."""
-    # TODO: implement
-    raise NotImplementedError("largest_city() is not implemented yet")
+    if not populations:
+        return ("", 0)
+    max_city = ""
+    max_pop = -1
+    for city, population in populations.items():
+        if population > max_pop:
+            max_pop = population
+            max_city = city
+    return (max_city, max_pop)
 
 
 def smallest_city(populations: dict[str, int]) -> tuple[str, int]:
     """Return (city, population) for the city with the smallest population."""
-    # TODO: implement
-    raise NotImplementedError("smallest_city() is not implemented yet")
+    if not populations:
+        return ("", 0)
+    min_city = list(populations.keys())[0]
+    min_pop = populations[min_city]
+
+    for city, population in populations.items():
+        if population < min_pop:
+            min_pop = population
+            min_city = city
+
+    return (min_city, min_pop)
 
 
 def total_population(populations: dict[str, int]) -> int:
     """Return the sum of all populations."""
-    # TODO: implement
-    raise NotImplementedError("total_population() is not implemented yet")
+    if not populations:
+        return 0
+    return sum(populations.values())
 
 
 if __name__ == "__main__":
     # Keep all input() and print() calls inside this block, otherwise the
     # autograder cannot import your file.
 
-    # TODO: Create your own datasets - up to you to fill in the data
+    # 1. Ask the user to input 7 daily temperatures
+    print("Please enter 7 daily temperatures:")
     temperatures = []
-    city_population = {}
+    for i in range(1, 8):
+        temp = float(input(f"Temperature for day {i}: "))
+        temperatures.append(temp)
 
-    # TODO: call the functions above and print the results
-    pass
+    # 2. Ask the user to input cities and their populations
+    print("\nEnter cities and populations (type 'stop' as the city name to finish):")
+    city_population = {}
+    while True:
+        city_name = input("City name: ").strip()
+        if city_name.lower() == "stop":
+            break
+        population = int(input(f"Population of {city_name}: "))
+        city_population[city_name] = population
+
+    # 3. Call functions and display the results
+    print("\n--- RESULTS ---")
+    avg_temp = average(temperatures)
+    print(f"Average temperature: {avg_temp:.1f}")
+
+    if city_population:
+        largest = largest_city(city_population)
+        smallest = smallest_city(city_population)
+        total_pop = total_population(city_population)
+
+        print(f"Largest city: {largest[0]} - {largest[1]}")
+        print(f"Smallest city: {smallest[0]} - {smallest[1]}")
+        print(f"Total population: {total_pop}")
+    else:
+        print("No cities were entered!")
