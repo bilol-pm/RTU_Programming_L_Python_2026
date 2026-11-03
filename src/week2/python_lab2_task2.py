@@ -44,7 +44,6 @@ NUMBERS = [3, 8, -2, 7, 0, -5, 10]
 def squares(numbers: list[int]) -> list[int]:
     """Return a list with the square of each number (list comprehension)."""
     # TODO: implement with a list comprehension
-
     return [x ** 2 for x in numbers]
     raise NotImplementedError("squares() is not implemented yet")
 
